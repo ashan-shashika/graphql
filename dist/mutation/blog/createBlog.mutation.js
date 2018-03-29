@@ -8,29 +8,57 @@ var _index = require('../../../models/index.js');
 
 var _index2 = _interopRequireDefault(_index);
 
-var _blogType = require('../../types/blog.type.js');
-
-var _blogType2 = _interopRequireDefault(_blogType);
-
-var _blogInput = require('../../input/blog.input.js');
-
-var _blogInput2 = _interopRequireDefault(_blogInput);
+var _graphql = require('graphql');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//input fields
+var AddBlogInput = new _graphql.GraphQLInputObjectType({
+  name: 'createBlogInput',
+  description: "test",
+  fields: function fields() {
+    return {
+      title: { type: _graphql.GraphQLString }
+    };
+  }
+});
+
+//return values
+var createBlogPayload = new _graphql.GraphQLObjectType({
+  name: 'createBlogPayload',
+  description: '\n\n    Example Request:\r\n    mutation CreateBlog($input: createBlogInput!) {\r\n        createBlog(input: $input) {\r\n          id\r\n        }\r\n    }\n\n    Example Input:\r\n    {\r\n        "input": {\r\n            "title": "test blog"\r\n        }\r\n    }',
+  fields: function fields() {
+    return {
+      id: {
+        type: _graphql.GraphQLInt,
+        resolve: function resolve(blog) {
+          return blog.id;
+        }
+      },
+      title: {
+        type: _graphql.GraphQLString,
+        resolve: function resolve(blog) {
+          return blog.title;
+        }
+      }
+    };
+  }
+});
+
+//mutation
 exports.default = {
-  type: _blogType2.default,
+  type: createBlogPayload,
   args: {
     input: {
-      type: _blogInput2.default
+      type: AddBlogInput
     }
   },
   resolve: function resolve(source, args) {
     return _index2.default.blog.create({
-      title: args.blog.title,
-      description: args.blog.description,
-      imageUrl: args.blog.imageUrl,
-      authorId: args.blog.authorId
+      title: args.input.title,
+      description: null,
+      imageUrl: null,
+      authorId: null
     });
   }
 };

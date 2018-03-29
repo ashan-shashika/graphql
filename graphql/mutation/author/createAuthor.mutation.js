@@ -1,17 +1,54 @@
 import models from "../../../models/index.js";
-import AuthourType from "../../types/author.type.js";
-import AuthourInput from "../../input/author.input.js"
+import {
+  GraphQLInputObjectType,
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLList,
+  GraphQLSchema
+} from "graphql"
 
+//input fields
+const createAuthorInput = new GraphQLInputObjectType({
+  name: 'createAuthorInput',
+  fields: () => ({
+      firstName: { type: GraphQLString },
+  })
+});
+
+//return values
+const createAuthorPayload = new GraphQLObjectType({
+  name:'createAuthorPayload',
+  description:`\n
+    Example Request:\r
+    mutation CreateAuthorPayload($input: createAuthorInput!) {\r
+        createAuthor(input: $input) {\r
+          id\r
+        }\r
+    }\n
+    Example Input:\r
+    {\r
+        "input": {\r
+            "firstName": "first author"\r
+        }\r
+    }`,
+  fields:()=>({
+    id:{ type:GraphQLInt },
+    firstName:{ type:GraphQLString}
+  })
+});
+
+//mutation
 export default {
-  type: AuthourType,
+  type: createAuthorPayload,
   args: {
-      author: {
-          type: AuthourInput
+      input: {
+          type: createAuthorInput
       }
   },
   resolve (source, args) {
     return models.author.create({
-      firstName: args.author.firstName
+      firstName: args.input.firstName
     });
   }
 }

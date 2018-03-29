@@ -28,13 +28,18 @@ var _updateBlogMutation = require('./blog/updateBlog.mutation.js');
 
 var _updateBlogMutation2 = _interopRequireDefault(_updateBlogMutation);
 
+var _deleteBlogMutation = require('./blog/deleteBlog.mutation.js');
+
+var _deleteBlogMutation2 = _interopRequireDefault(_deleteBlogMutation);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
     addUser: _addUserMutation2.default,
     updateUser: _updateUserMutation2.default,
-    addAuthor: _createAuthorMutation2.default,
+    createAuthor: _createAuthorMutation2.default,
     updateAuthor: _updateAuthorMutation2.default,
-    addBlog: _createBlogMutation2.default,
-    updateBlog: _updateBlogMutation2.default
+    createBlog: _createBlogMutation2.default,
+    updateBlog: _updateBlogMutation2.default,
+    deleteBlog: _deleteBlogMutation2.default
 };

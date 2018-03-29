@@ -7,14 +7,10 @@ Object.defineProperty(exports, "__esModule", {
 var _graphql = require('graphql');
 
 exports.default = new _graphql.GraphQLInputObjectType({
-  name: 'createBlogInput',
-  description: "test",
+  name: 'deleteBlogInput',
   fields: function fields() {
     return {
-      title: { type: _graphql.GraphQLString }
-      // description: { type: GraphQLString },
-      // imageUrl: { type: GraphQLString },
-      // authorId: { type: GraphQLInt },
+      id: { type: _graphql.GraphQLInt }
     };
   }
 });

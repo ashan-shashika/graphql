@@ -8,32 +8,42 @@ var _index = require('../../../models/index.js');
 
 var _index2 = _interopRequireDefault(_index);
 
-var _author = require('../../types/author.js');
-
-var _author2 = _interopRequireDefault(_author);
-
-var _authorInput = require('../../input/author.input.js');
-
-var _authorInput2 = _interopRequireDefault(_authorInput);
-
 var _graphql = require('graphql');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var updateAuthorInput = new _graphql.GraphQLInputObjectType({
+  name: 'updateAuthorInput',
+  fields: function fields() {
+    return {
+      id: { type: _graphql.GraphQLInt },
+      firstName: { type: _graphql.GraphQLString }
+    };
+  }
+});
+
+//return values
+var updateAuthorPayload = new _graphql.GraphQLObjectType({
+  name: 'updateAuthorPayload',
+  description: '\n\n    Example Request:\r\n    mutation UpdateAuthorPayload($input: updateAuthorInput!) {\r\n        updateAuthor(input: $input) {\r\n          id\r\n        }\r\n    }\n\n    Example Input:\r\n    {\r\n        "input": {\r\n            "firstName": "first author updated"\r\n        }\r\n    }',
+  fields: function fields() {
+    return {
+      id: { type: _graphql.GraphQLInt },
+      firstName: { type: _graphql.GraphQLString }
+    };
+  }
+});
 exports.default = {
-  type: _author2.default,
+  type: updateAuthorPayload,
   args: {
-    id: {
-      type: new _graphql.GraphQLNonNull(_graphql.GraphQLInt)
-    },
-    firstName: {
-      type: new _graphql.GraphQLNonNull(_graphql.GraphQLString)
+    input: {
+      type: updateAuthorInput
     }
   },
   resolve: function resolve(source, args) {
-    return _index2.default.author.findById(args.id).then(function (author) {
+    return _index2.default.author.findById(args.input.id).then(function (author) {
       return author.update({
-        firstName: args.firstName
+        firstName: args.input.firstName
       });
     });
   }

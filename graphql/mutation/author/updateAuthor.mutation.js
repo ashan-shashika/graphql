@@ -1,23 +1,55 @@
 import models from '../../../models/index.js';
-import AuthorType from '../../types/author.js';
-import AuthorInput from "../../input/author.input.js"
-import { GraphQLNonNull , GraphQLInt,GraphQLString } from "graphql"
+import {
+  GraphQLInputObjectType,
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLList,
+  GraphQLSchema
+} from "graphql"
 
+const updateAuthorInput = new GraphQLInputObjectType({
+  name:'updateAuthorInput',
+  fields:()=>({
+    id:{type:GraphQLInt},
+    firstName:{ type:GraphQLString }
+  })
+});
+
+
+//return values
+const updateAuthorPayload = new GraphQLObjectType({
+  name:'updateAuthorPayload',
+  description:`\n
+    Example Request:\r
+    mutation UpdateAuthorPayload($input: updateAuthorInput!) {\r
+        updateAuthor(input: $input) {\r
+          id\r
+        }\r
+    }\n
+    Example Input:\r
+    {\r
+        "input": {\r
+            "firstName": "first author updated"\r
+        }\r
+    }`,
+  fields:()=>({
+    id:{ type:GraphQLInt },
+    firstName:{ type:GraphQLString }
+  })
+})
 export default {
-  type: AuthorType,
+  type: updateAuthorPayload,
   args: {
-    id: {
-      type: new GraphQLNonNull(GraphQLInt)
-    },
-    firstName: {
-      type: new GraphQLNonNull(GraphQLString)
+    input:{
+      type:updateAuthorInput
     }
   },
   resolve (source, args) {
-    return models.author.findById(args.id)
+    return models.author.findById(args.input.id)
     .then((author)=>{
       return author.update({
-        firstName: args.firstName
+        firstName: args.input.firstName
       })
     });
   }

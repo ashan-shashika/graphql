@@ -1,17 +1,19 @@
 import addUser from './user/addUser.mutation.js';
 import updateUser from './user/updateUser.mutation.js';
 
-import addAuthor from './author/createAuthor.mutation.js';
+import createAuthor from './author/createAuthor.mutation.js';
 import updateAuthor from './author/updateAuthor.mutation.js';
 
-import addBlog from './blog/createBlog.mutation.js';
+import createBlog from './blog/createBlog.mutation.js';
 import updateBlog from './blog/updateBlog.mutation.js';
+import deleteBlog from './blog/deleteBlog.mutation.js';
 
 export default {
     addUser,
     updateUser,
-    addAuthor,
+    createAuthor,
     updateAuthor,
-    addBlog,
-    updateBlog
+    createBlog,
+    updateBlog,
+    deleteBlog
 };

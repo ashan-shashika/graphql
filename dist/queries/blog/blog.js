@@ -10,14 +10,14 @@ var _index = require('../../../models/index.js');
 
 var _index2 = _interopRequireDefault(_index);
 
-var _blogTypeTest = require('../../types/blog.type.test.js');
+var _blogType = require('../../types/blog.type.js');
 
-var _blogTypeTest2 = _interopRequireDefault(_blogTypeTest);
+var _blogType2 = _interopRequireDefault(_blogType);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    type: _blogTypeTest2.default.Blog,
+    type: _blogType2.default,
     args: {
         id: {
             type: new _graphql.GraphQLNonNull(_graphql.GraphQLID)

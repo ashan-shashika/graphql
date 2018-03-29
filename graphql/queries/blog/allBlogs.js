@@ -6,9 +6,10 @@ import {
 } from 'graphql';
 
 import models from '../../../models/index.js';
-import BlogType from '../../types/blog.type.test.js';
+import Blog from '../../types/blog.type.js';
+
 export default {
-    type: new GraphQLList(BlogType.Blog),
+    type: new GraphQLList(Blog),
     args: {
 
     },
