@@ -46,7 +46,9 @@ exports.default = {
   },
   resolve: function resolve(source, args) {
     return _index2.default.blog.findById(args.input.id).then(function (blog) {
-      return blog.destroy({ force: true });
+      return blog.update({
+        status: 2
+      });
     });
   }
 };

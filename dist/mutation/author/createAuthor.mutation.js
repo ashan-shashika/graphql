@@ -44,7 +44,8 @@ exports.default = {
   },
   resolve: function resolve(source, args) {
     return _index2.default.author.create({
-      firstName: args.input.firstName
+      firstName: args.input.firstName,
+      status: 1
     });
   }
 };

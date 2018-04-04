@@ -16,6 +16,12 @@ const fields = ()=>{
         return blog.id
       }
     },
+    status:{
+      type:GraphQLInt,
+      resolve(blog){
+        return blog.status
+      }
+    },
     title:{
       type:GraphQLString,
       resolve(blog){

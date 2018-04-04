@@ -48,7 +48,8 @@ export default {
   },
   resolve (source, args) {
     return models.author.create({
-      firstName: args.input.firstName
+      firstName: args.input.firstName,
+      status:1
     });
   }
 }

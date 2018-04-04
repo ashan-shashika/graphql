@@ -17,6 +17,12 @@ const User = new GraphQLObjectType({
           return user.id
         }
       },
+      status:{
+        type:GraphQLInt,
+        resolve(user){
+          return user.status
+        }
+      },
       firstName:{
         type:GraphQLString,
         resolve(user){

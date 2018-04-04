@@ -19,6 +19,12 @@ const Author = new GraphQLObjectType({
           return author.id
         }
       },
+      status:{
+        type:GraphQLInt,
+        resolve(author){
+          return author.status
+        }
+      },
       firstName:{
         type:GraphQLString,
         resolve(author){

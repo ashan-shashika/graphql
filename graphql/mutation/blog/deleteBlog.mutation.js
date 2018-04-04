@@ -52,8 +52,10 @@ export default {
   },
   resolve (source, args) {
     return models.blog.findById(args.input.id)
-      .then((blog)=>{
-        return blog.destroy({force:true})
-      });
+    .then((blog)=>{
+      return blog.update({
+        status: 2
+      })
+    });
   }
 }

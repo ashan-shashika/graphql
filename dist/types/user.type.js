@@ -17,6 +17,12 @@ var User = new _graphql.GraphQLObjectType({
           return user.id;
         }
       },
+      status: {
+        type: _graphql.GraphQLInt,
+        resolve: function resolve(user) {
+          return user.status;
+        }
+      },
       firstName: {
         type: _graphql.GraphQLString,
         resolve: function resolve(user) {

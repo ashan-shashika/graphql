@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     description: DataTypes.STRING,
     imageUrl: DataTypes.STRING,
+    status: DataTypes.INTEGER
   }, {});
   blog.associate = function(models) {
     models.blog.belongsTo(models.author)

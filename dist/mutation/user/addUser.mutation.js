@@ -29,7 +29,8 @@ exports.default = {
     return _index2.default.user.create({
       firstName: args.user.firstName,
       lastName: args.user.lastName,
-      email: args.user.email.toLowerCase()
+      email: args.user.email.toLowerCase(),
+      status: 1
     });
   }
 };

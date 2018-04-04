@@ -12,34 +12,32 @@ const deleteAuthorInput = new GraphQLInputObjectType({
   name:'deleteAuthorInput',
   fields:()=>({
     id:{type:GraphQLInt},
-    firstName:{ type:GraphQLString }
   })
 });
 
 
 //return values
-const updateAuthorPayload = new GraphQLObjectType({
-  name:'updateAuthorPayload',
+const deleteAuthorPayload = new GraphQLObjectType({
+  name:'deleteAuthorPayload',
   description:`\n
     Example Request:\r
-    mutation UpdateAuthorPayload($input: deleteAuthorInput!) {\r
-        updateAuthor(input: $input) {\r
+    mutation DeleteAuthorPayload($input: deleteAuthorInput!) {\r
+        deleteAuthor(input: $input) {\r
           id\r
         }\r
     }\n
     Example Input:\r
     {\r
         "input": {\r
-            "firstName": "first author updated"\r
+            "id": \r
         }\r
     }`,
   fields:()=>({
     id:{ type:GraphQLInt },
-    firstName:{ type:GraphQLString }
   })
 })
 export default {
-  type: updateAuthorPayload,
+  type: deleteAuthorPayload,
   args: {
     input:{
       type:deleteAuthorInput
@@ -49,7 +47,7 @@ export default {
     return models.author.findById(args.input.id)
     .then((author)=>{
       return author.update({
-        firstName: args.input.firstName
+        status: 2
       })
     });
   }

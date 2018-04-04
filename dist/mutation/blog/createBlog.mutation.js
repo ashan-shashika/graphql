@@ -58,7 +58,8 @@ exports.default = {
       title: args.input.title,
       description: null,
       imageUrl: null,
-      authorId: null
+      authorId: null,
+      status: 1
     });
   }
 };

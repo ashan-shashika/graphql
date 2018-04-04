@@ -20,6 +20,10 @@ var _updateAuthorMutation = require('./author/updateAuthor.mutation.js');
 
 var _updateAuthorMutation2 = _interopRequireDefault(_updateAuthorMutation);
 
+var _deleteAuthorMutation = require('./author/deleteAuthor.mutation.js');
+
+var _deleteAuthorMutation2 = _interopRequireDefault(_deleteAuthorMutation);
+
 var _createBlogMutation = require('./blog/createBlog.mutation.js');
 
 var _createBlogMutation2 = _interopRequireDefault(_createBlogMutation);
@@ -39,6 +43,7 @@ exports.default = {
     updateUser: _updateUserMutation2.default,
     createAuthor: _createAuthorMutation2.default,
     updateAuthor: _updateAuthorMutation2.default,
+    deleteAuthor: _deleteAuthorMutation2.default,
     createBlog: _createBlogMutation2.default,
     updateBlog: _updateBlogMutation2.default,
     deleteBlog: _deleteBlogMutation2.default

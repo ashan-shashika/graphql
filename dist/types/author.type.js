@@ -27,6 +27,12 @@ var Author = new _graphql.GraphQLObjectType({
           return author.id;
         }
       },
+      status: {
+        type: _graphql.GraphQLInt,
+        resolve: function resolve(author) {
+          return author.status;
+        }
+      },
       firstName: {
         type: _graphql.GraphQLString,
         resolve: function resolve(author) {

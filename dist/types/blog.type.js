@@ -24,6 +24,12 @@ var fields = function fields() {
         return blog.id;
       }
     },
+    status: {
+      type: _graphql.GraphQLInt,
+      resolve: function resolve(blog) {
+        return blog.status;
+      }
+    },
     title: {
       type: _graphql.GraphQLString,
       resolve: function resolve(blog) {
