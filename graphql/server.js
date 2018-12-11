@@ -15,4 +15,4 @@ app.use('/graphql', graphqlHTTP({
   pretty:true,
 }));
 
-app.listen(3000,()=>{console.log('app is running PORT:3000');})
+app.listen(3000,()=>{console.log('test => app is running PORT:3000');})
