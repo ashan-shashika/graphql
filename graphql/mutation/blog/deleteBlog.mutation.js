@@ -1,24 +1,17 @@
-import models from '../../../models/index.js';
-import {
-  GraphQLInputObjectType,
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLInt,
-  GraphQLList,
-  GraphQLSchema
-} from "graphql"
+import models from "../../../models/index.js";
+import { GraphQLInputObjectType, GraphQLObjectType, GraphQLInt } from "graphql";
 
-//input fields
-const deleteBlogInput =new GraphQLInputObjectType({
-  name: 'deleteBlogInput',
+// input fields
+const deleteBlogInput = new GraphQLInputObjectType({
+  name: "deleteBlogInput",
   fields: () => ({
-      id: { type: GraphQLInt }
+    id: { type: GraphQLInt }
   })
-})
-//return values
+});
+// return values
 const deleteBlogPayload = new GraphQLObjectType({
-  name :'deleteBlogPayload',
-  description:`\n
+  name: "deleteBlogPayload",
+  description: `\n
     Example Request:\r
     mutation DeleteBlog($input: deleteBlogInput!) {\r
         deleteBlog(input: $input) {\r
@@ -31,31 +24,30 @@ const deleteBlogPayload = new GraphQLObjectType({
             "id": ""\r
         }\r
     }`,
-  fields:()=>{
-    return{
-      id:{
-        type:GraphQLInt,
-        resolve(blog){
-          return blog.id
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLInt,
+        resolve(blog) {
+          return blog.id;
         }
       }
-    }
+    };
   }
-})
-//mutation
+});
+// mutation
 export default {
   type: deleteBlogPayload,
   args: {
-      input: {
-          type: deleteBlogInput,
-      }
+    input: {
+      type: deleteBlogInput
+    }
   },
-  resolve (source, args) {
-    return models.blog.findById(args.input.id)
-    .then((blog)=>{
+  resolve(source, args) {
+    return models.blog.findById(args.input.id).then(blog => {
       return blog.update({
         status: 2
-      })
+      });
     });
   }
-}
+};

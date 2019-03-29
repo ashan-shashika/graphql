@@ -1,20 +1,16 @@
-import {
-  GraphQLID,
-  GraphQLString,
-  GraphQLNonNull
-} from 'graphql';
+import { GraphQLID, GraphQLNonNull } from "graphql";
 
-import models from '../../../models/index.js';
-import BlogType from '../../types/blog.type.js';
+import models from "../../../models/index.js";
+import BlogType from "../../types/blog.type.js";
 
 export default {
-    type: BlogType,
-    args: {
-        id: {
-            type: new GraphQLNonNull(GraphQLID)
-        }
-    },
-    resolve(root, args) {
-        return models.blog.findById(args.id);
+  type: BlogType,
+  args: {
+    id: {
+      type: new GraphQLNonNull(GraphQLID)
     }
+  },
+  resolve(root, args) {
+    return models.blog.findById(args.id);
+  }
 };

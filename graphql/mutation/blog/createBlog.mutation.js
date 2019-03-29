@@ -1,26 +1,24 @@
-import models from '../../../models/index.js';
+import models from "../../../models/index.js";
 import {
   GraphQLInputObjectType,
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt,
-  GraphQLList,
-  GraphQLSchema
-} from "graphql"
+  GraphQLInt
+} from "graphql";
 
-//input fields
+// input fields
 const AddBlogInput = new GraphQLInputObjectType({
-  name: 'createBlogInput',
-  description:"test",
+  name: "createBlogInput",
+  description: "test",
   fields: () => ({
-      title: { type: GraphQLString },
-    })
+    title: { type: GraphQLString }
   })
+});
 
-//return values
+// return values
 const createBlogPayload = new GraphQLObjectType({
-  name :'createBlogPayload',
-  description:`\n
+  name: "createBlogPayload",
+  description: `\n
     Example Request:\r
     mutation CreateBlog($input: createBlogInput!) {\r
         createBlog(input: $input) {\r
@@ -33,39 +31,39 @@ const createBlogPayload = new GraphQLObjectType({
             "title": "test blog"\r
         }\r
     }`,
-  fields:()=>{
-    return{
-      id:{
-        type:GraphQLInt,
-        resolve(blog){
-          return blog.id
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLInt,
+        resolve(blog) {
+          return blog.id;
         }
       },
-      title:{
-        type:GraphQLString,
-        resolve(blog){
-          return blog.title
+      title: {
+        type: GraphQLString,
+        resolve(blog) {
+          return blog.title;
         }
-      },
-    }
+      }
+    };
   }
 });
 
-//mutation
+// mutation
 export default {
   type: createBlogPayload,
   args: {
-      input: {
-          type: AddBlogInput,
-      }
+    input: {
+      type: AddBlogInput
+    }
   },
-  resolve (source, args) {
+  resolve(source, args) {
     return models.blog.create({
       title: args.input.title,
       description: null,
       imageUrl: null,
-      authorId:null,
-      status:1
+      authorId: null,
+      status: 1
     });
   }
-}
+};

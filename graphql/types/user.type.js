@@ -1,49 +1,42 @@
-import {
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLInt,
-  GraphQLList,
-  GraphQLSchema
-} from "graphql"
+import { GraphQLObjectType, GraphQLString, GraphQLInt } from "graphql";
 
 const User = new GraphQLObjectType({
-  name :'user',
-  description:'This represent a User',
-  fields:()=>{
-    return{
-      id:{
-        type:GraphQLInt,
-        resolve(user){
-          return user.id
+  name: "user",
+  description: "This represent a User",
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLInt,
+        resolve(user) {
+          return user.id;
         }
       },
-      status:{
-        type:GraphQLInt,
-        resolve(user){
-          return user.status
+      status: {
+        type: GraphQLInt,
+        resolve(user) {
+          return user.status;
         }
       },
-      firstName:{
-        type:GraphQLString,
-        resolve(user){
-          return user.firstName
+      firstName: {
+        type: GraphQLString,
+        resolve(user) {
+          return user.firstName;
         }
       },
-      lastName:{
-        type:GraphQLString,
-        resolve(user){
-          return user.lastName
+      lastName: {
+        type: GraphQLString,
+        resolve(user) {
+          return user.lastName;
         }
       },
-      email:{
-        type:GraphQLString,
-        resolve(user){
-          return user.email
+      email: {
+        type: GraphQLString,
+        resolve(user) {
+          return user.email;
         }
       }
-    }
+    };
   }
-
 });
 
-export default User
+export default User;

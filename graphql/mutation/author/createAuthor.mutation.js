@@ -3,23 +3,21 @@ import {
   GraphQLInputObjectType,
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt,
-  GraphQLList,
-  GraphQLSchema
-} from "graphql"
+  GraphQLInt
+} from "graphql";
 
-//input fields
+// input fields
 const createAuthorInput = new GraphQLInputObjectType({
-  name: 'createAuthorInput',
+  name: "createAuthorInput",
   fields: () => ({
-      firstName: { type: GraphQLString },
+    firstName: { type: GraphQLString }
   })
 });
 
-//return values
+// return values
 const createAuthorPayload = new GraphQLObjectType({
-  name:'createAuthorPayload',
-  description:`\n
+  name: "createAuthorPayload",
+  description: `\n
     Example Request:\r
     mutation CreateAuthorPayload($input: createAuthorInput!) {\r
         createAuthor(input: $input) {\r
@@ -32,24 +30,24 @@ const createAuthorPayload = new GraphQLObjectType({
             "firstName": "first author"\r
         }\r
     }`,
-  fields:()=>({
-    id:{ type:GraphQLInt },
-    firstName:{ type:GraphQLString}
+  fields: () => ({
+    id: { type: GraphQLInt },
+    firstName: { type: GraphQLString }
   })
 });
 
-//mutation
+// mutation
 export default {
   type: createAuthorPayload,
   args: {
-      input: {
-          type: createAuthorInput
-      }
+    input: {
+      type: createAuthorInput
+    }
   },
-  resolve (source, args) {
+  resolve(source, args) {
     return models.author.create({
       firstName: args.input.firstName,
-      status:1
+      status: 1
     });
   }
-}
+};

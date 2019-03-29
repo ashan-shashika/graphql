@@ -1,0 +1,36 @@
+{
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "parser": "babel-eslint",
+    "extends": ["eslint:recommended"],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "spaced-comment": ["error", "always", { "exceptions": ["!", "/"] }],
+        "no-restricted-syntax": 0,
+        "eqeqeq": ["error", "always", { "null": "ignore" }],
+        "no-eq-null": 0,
+        "sort-keys": 0,
+    
+        "//1": "allow underscores",
+        "id-match": [
+          "error",
+          "(^[A-Za-z]+(?:[A-Z_][a-z_]*)*\\d*$)|(^[A-Z]+(_[A-Z]+)*(_\\d$)*$)|(^(_|\\$)$)"
+        ],
+        "func-style": 0,
+        "import/exports-last": 0,
+        "import/no-namespace": 0,
+        "no-use-before-define": 0,
+    
+        "//2": "disables for prettier",
+        "babel/object-curly-spacing": 0
+      }
+}

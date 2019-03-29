@@ -3,28 +3,26 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLList,
-  GraphQLNonNull,
-  GraphQLSchema
-} from "graphql"
-import models from '../../../models/index.js';
+  GraphQLNonNull
+} from "graphql";
+import models from "../../../models/index.js";
 
-//input fields
-const updateBlogInput=new GraphQLInputObjectType({
-  name: 'updateBlogInput',
+// input fields
+const updateBlogInput = new GraphQLInputObjectType({
+  name: "updateBlogInput",
   fields: () => ({
-      id: { type: new GraphQLNonNull(GraphQLInt) },
-      title: { type: new GraphQLNonNull(GraphQLString) },
-      description: { type: new GraphQLNonNull(GraphQLString) },
-      imageUrl: { type: new GraphQLNonNull(GraphQLString) },
-      authorId: { type: new GraphQLNonNull(GraphQLInt) },
+    id: { type: new GraphQLNonNull(GraphQLInt) },
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    description: { type: new GraphQLNonNull(GraphQLString) },
+    imageUrl: { type: new GraphQLNonNull(GraphQLString) },
+    authorId: { type: new GraphQLNonNull(GraphQLInt) }
   })
 });
 
-//return values
+// return values
 const updateBlogPayload = new GraphQLObjectType({
-  name :'updateBlogPayload',
-  description:`\n
+  name: "updateBlogPayload",
+  description: `\n
     Example Request:\r
     mutation UpdateBlog($input: updateBlogInput!) {\r
         updateBlog(input: $input) {\r
@@ -41,59 +39,58 @@ const updateBlogPayload = new GraphQLObjectType({
           "authorId": 2\r
         }\r
     }\r`,
-  fields:()=>{
-    return{
-      id:{
-        type:GraphQLInt,
-        resolve(blog){
-          return blog.id
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLInt,
+        resolve(blog) {
+          return blog.id;
         }
       },
-      title:{
-        type:GraphQLString,
-        resolve(blog){
-          return blog.title
+      title: {
+        type: GraphQLString,
+        resolve(blog) {
+          return blog.title;
         }
       },
-      description:{
-        type:GraphQLString,
-        resolve(blog){
-          return blog.description
+      description: {
+        type: GraphQLString,
+        resolve(blog) {
+          return blog.description;
         }
       },
-      imageUrl:{
-        type:GraphQLString,
-        resolve(blog){
-          return blog.imageUrl
+      imageUrl: {
+        type: GraphQLString,
+        resolve(blog) {
+          return blog.imageUrl;
         }
       },
-      authorId:{
-        type:GraphQLString,
-        resolve(blog){
-          return blog.authorId
+      authorId: {
+        type: GraphQLString,
+        resolve(blog) {
+          return blog.authorId;
         }
-      },
-    }
+      }
+    };
   }
 });
 
-//mutation
+// mutation
 export default {
   type: updateBlogPayload,
   args: {
-    input:{
-      type:updateBlogInput
+    input: {
+      type: updateBlogInput
     }
   },
-  resolve (source, args) {
-    return models.blog.findById(args.input.id)
-    .then((blog)=>{
+  resolve(source, args) {
+    return models.blog.findById(args.input.id).then(blog => {
       return blog.update({
         title: args.input.title,
         description: args.input.description,
         imageUrl: args.input.imageUrl,
-        authorId:args.input.authorId
-      })
+        authorId: args.input.authorId
+      });
     });
   }
-}
+};

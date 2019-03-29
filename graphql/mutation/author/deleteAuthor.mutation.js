@@ -1,25 +1,17 @@
-import models from '../../../models/index.js';
-import {
-  GraphQLInputObjectType,
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLInt,
-  GraphQLList,
-  GraphQLSchema
-} from "graphql"
+import models from "../../../models/index.js";
+import { GraphQLInputObjectType, GraphQLObjectType, GraphQLInt } from "graphql";
 
 const deleteAuthorInput = new GraphQLInputObjectType({
-  name:'deleteAuthorInput',
-  fields:()=>({
-    id:{type:GraphQLInt},
+  name: "deleteAuthorInput",
+  fields: () => ({
+    id: { type: GraphQLInt }
   })
 });
 
-
-//return values
+// return values
 const deleteAuthorPayload = new GraphQLObjectType({
-  name:'deleteAuthorPayload',
-  description:`\n
+  name: "deleteAuthorPayload",
+  description: `\n
     Example Request:\r
     mutation DeleteAuthorPayload($input: deleteAuthorInput!) {\r
         deleteAuthor(input: $input) {\r
@@ -32,24 +24,22 @@ const deleteAuthorPayload = new GraphQLObjectType({
             "id": \r
         }\r
     }`,
-  fields:()=>({
-    id:{ type:GraphQLInt },
+  fields: () => ({
+    id: { type: GraphQLInt }
   })
-})
+});
 export default {
   type: deleteAuthorPayload,
   args: {
-    input:{
-      type:deleteAuthorInput
+    input: {
+      type: deleteAuthorInput
     }
   },
-  resolve (source, args) {
-    return models.author.findById(args.input.id)
-    .then((author)=>{
+  resolve(source, args) {
+    return models.author.findById(args.input.id).then(author => {
       return author.update({
         status: 2
-      })
+      });
     });
   }
-
-}
+};

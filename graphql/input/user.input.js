@@ -1,15 +1,10 @@
-import {
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLInt,
-  GraphQLInputObjectType
-} from "graphql"
+import { GraphQLString, GraphQLInputObjectType } from "graphql";
 
 export default new GraphQLInputObjectType({
-  name: 'UserInput',
+  name: "UserInput",
   fields: () => ({
-      firstName: { type: GraphQLString },
-      lastName: { type: GraphQLString },
-      email: { type: GraphQLString }
+    firstName: { type: GraphQLString },
+    lastName: { type: GraphQLString },
+    email: { type: GraphQLString }
   })
 });
