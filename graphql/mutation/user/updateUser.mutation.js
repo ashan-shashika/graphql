@@ -1,5 +1,5 @@
 import models from "../../../models/index.js";
-import UserType from "../../types/user.js";
+import UserType from "../../types/user.type.js";
 import { GraphQLNonNull, GraphQLInt, GraphQLString } from "graphql";
 
 export default {
